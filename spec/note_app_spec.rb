@@ -99,5 +99,45 @@ RSpec.describe Note::NotesApplication do
 
 	end
 
+	describe '#delete' do
+	  it 'deletes note with given NOTE ID' do
+		note_obj.create('This is a unit test')
+		note_obj.create('This is not a unit test')
+		expect {note_obj.delete(2)}.to output("Note with ID 2 has been deleted\n\n").to_stdout
+	  end
+
+	  it 'gives a notice when NOTE ID is not found' do
+	  	result =  "Invalid ID: 2\n\n"
+		note_obj.create('This is a unit test')
+		expect {note_obj.delete(2)}.to output(result).to_stdout
+	  end
+
+	  it 'takes in one argument' do
+	  	  expect {note_obj.delete(1)}.not_to raise_error
+	  	  expect {note_obj.delete(1,2)}.to raise_error ArgumentError
+	  	  expect {note_obj.delete}.to raise_error ArgumentError  	
+	  end
+	end
+
+	describe '#edit' do
+	  it 'changes a previous note content to a new note content' do
+	  	note_obj.create('This is a unit test')
+		note_obj.create('This is not a unit test')
+		expect {note_obj.edit(2,"It's all about the bass!")}.to output("Your note with NOTE ID : 2, has been changed to It's all about the bass!\n").to_stdout
+	  end
+
+	  it 'takes in two argument' do
+	  	expect {note_obj.edit(1)}.to raise_error ArgumentError
+	  	expect {note_obj.edit(1,"I Love You")}.not_to raise_error 
+	  	expect {note_obj.edit}.to raise_error ArgumentError	  	
+	  end
+
+	   it 'gives a notice when NOTE ID is not found' do
+	  	result =  "Invalid ID: 2\n"
+		note_obj.create('This is a unit test')
+		expect {note_obj.edit(2, "If I were a boy")}.to output(result).to_stdout
+	  end
+	end
+
 
 end

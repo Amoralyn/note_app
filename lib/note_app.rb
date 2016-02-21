@@ -50,6 +50,7 @@ module Note
         end
 
          def delete(note_id)
+            puts "No notes to search through" if @notes.empty?
             if note_id < 1 || note_id > @notes.length
                 puts "Invalid ID: #{note_id}\n\n"
             else

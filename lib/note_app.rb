@@ -5,15 +5,23 @@ module Note
             @author = author
             @notes = []
         end
+
+
         def create(notes_content)
             @notes.push(notes_content)
+            puts "Note has been created!\n\n"
         end
         
         def list
+        	if @notes.empty? 
+        		puts "No notes available\n\n"
+        	end
+
             @notes.each do |i|
                puts "NOTE ID : #{@notes.index(i)+1}\n\n#{i}\n\nBy Author: #{@author}\n\n===============================\n\n"
            end
         end 
+
         def get(note_id)
             if note_id < 1 || note_id > @notes.length
                 puts "Invalid ID: #{note_id}\n\n"
@@ -22,6 +30,7 @@ module Note
             end
         end
         
+        
         def search(search_text)
             puts "Showing results for search '#{search_text}':\n\n"
             @notes.each do |i|
@@ -29,7 +38,7 @@ module Note
                     puts "NOTE ID : #{@notes.index(i)+1}\n\n#{i}\n\nBy Author: #{@author}\n\n===============================\n\n"
                 
                 else
-                    puts "No result found"
+                    puts "No result found\n\n"
                     break
                 end
                 

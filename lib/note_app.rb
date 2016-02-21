@@ -32,14 +32,17 @@ module Note
         
         
         def search(search_text)
-            puts "Showing results for search '#{search_text}':\n\n"
+            # puts "Showing results for search '#{search_text}':\n\n"
+            puts "No notes to search through" if @notes.empty?
             @notes.each do |i|
                 if i.include? search_text
-                    puts "NOTE ID : #{@notes.index(i)+1}\n\n#{i}\n\nBy Author: #{@author}\n\n===============================\n\n"
+                    puts "Showing results for search '#{search_text}':\n\nNOTE ID : #{@notes.index(i)+1}\n\n#{i}\n\nBy Author: #{@author}\n\n===============================\n\n"
                 
                 else
-                    puts "No result found\n\n"
-                    break
+                	if @notes.all? {|n| !n.include? search_text}
+                    	puts "Showing results for search '#{search_text}':\n\nNo result found\n\n"
+                    	break
+                    end
                 end
                 
             end
@@ -47,6 +50,7 @@ module Note
         end
 
          def delete(note_id)
+            puts "No notes to search through" if @notes.empty?
             if note_id < 1 || note_id > @notes.length
                 puts "Invalid ID: #{note_id}\n\n"
             else
@@ -63,5 +67,6 @@ module Note
                 puts "Your note with NOTE ID : #{note_id}, has been changed to #{new_content}" 
             end
         end
+        
     end
 end

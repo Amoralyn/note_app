@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby
 require_relative "note_app"
 
 class StartApp

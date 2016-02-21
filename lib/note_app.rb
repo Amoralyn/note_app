@@ -36,5 +36,23 @@ module Note
             end
             
         end
+
+         def delete(note_id)
+            if note_id < 1 || note_id > @notes.length
+                puts "Invalid ID: #{note_id}\n\n"
+            else
+                @notes.delete_at(note_id - 1)
+                puts "Note with ID #{note_id} has been deleted\n\n"
+            end
+        end
+        
+        def edit(note_id,new_content)
+            if note_id < 1 || note_id > @notes.length
+                puts "Invalid ID: #{note_id}" 
+            else
+                @notes[(note_id - 1)] = new_content
+                puts "Your note with NOTE ID : #{note_id}, has been changed to #{new_content}" 
+            end
+        end
     end
 end

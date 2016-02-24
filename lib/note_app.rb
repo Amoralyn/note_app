@@ -32,15 +32,15 @@ module Note
         
         
         def search(search_text)
-            # puts "Showing results for search '#{search_text}':\n\n"
             puts "No notes to search through" if @notes.empty?
             @notes.each do |i|
+                 puts "Showing results for search '#{search_text}':\n\n"
                 if i.include? search_text
-                    puts "Showing results for search '#{search_text}':\n\nNOTE ID : #{@notes.index(i)+1}\n\n#{i}\n\nBy Author: #{@author}\n\n===============================\n\n"
+                    puts "NOTE ID : #{@notes.index(i)+1}\n\n#{i}\n\nBy Author: #{@author}\n\n===============================\n\n"
                 
                 else
                 	if @notes.all? {|n| !n.include? search_text}
-                    	puts "Showing results for search '#{search_text}':\n\nNo result found\n\n"
+                    	puts "No result found\n\n"
                     	break
                     end
                 end

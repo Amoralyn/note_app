@@ -28,16 +28,13 @@ RSpec.describe Note::NotesApplication do
 	  	note_obj.create("This is a unit test")
 	  	expect(note_obj.instance_variable_get('@notes')).to eql ['This is a unit test']
 	  	expect(note_obj.instance_variable_get('@notes').length).to eql 1
-		expect { note_obj.create('This is a unit test') }.to output("Note has been created!\n\n").to_stdout
-
-	  	
+		expect { note_obj.create('This is a unit test') }.to output("Note has been created!\n\n").to_stdout 	
 	  end
 	end
 
 	describe '#list' do
 	  it 'does not take any argument' do
 	    expect { note_obj.list('Say yes')}.to raise_error ArgumentError
-	  		
 	  end
   
 	  it 'lists out available notes ' do

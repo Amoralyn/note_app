@@ -37,12 +37,9 @@ module Note
                  puts "Showing results for search '#{search_text}':\n\n"
                 if i.include? search_text
                     puts "NOTE ID : #{@notes.index(i)+1}\n\n#{i}\n\nBy Author: #{@author}\n\n===============================\n\n"
-                
                 else
-                	if @notes.all? {|n| !n.include? search_text}
-                    	puts "No result found\n\n"
-                    	break
-                    end
+                    puts "No result found\n\n"
+                    break
                 end
                 
             end
